@@ -102,3 +102,46 @@
 // } else {
 //     alert(`¡Buenas noches!\n Son las ${actualTime}`);
 // }
+
+// Exercise 3
+
+// // The function numberInterval returns an integer number included in a given interval
+// // The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
+// // The order in which the parameters are informed is not important
+// // The random number generated will be an integer equal or greater than the smallest informed value and equal or smaller than the biggest informed value 
+// function numberInInterval(minNumber, maxNumber) {
+//     if (minNumber > maxNumber) {
+//         let tempValue = minNumber;
+//         minNumber = maxNumber;
+//         maxNumber = tempValue;
+//     }
+// return Math.round(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber))) + Math.ceil(minNumber);
+// }
+
+// // Function that generates a random hexadecimal color
+// function genHexadecimalColor () {
+//     let genColor ="";
+//     for (let i = 0;i < 6; i++) {
+//         genNumber = numberInInterval(0, 15);
+//         switch (true) {
+//             case (genNumber <= 9):
+//                 genColor += genNumber;
+//                 break;
+//             case (genNumber > 9):
+//                 genColor += String.fromCharCode(65 + genNumber - 10);
+//                 break;
+//             default:
+//                 genColor += 0;
+//                 break;
+//         }
+//     }
+//     return genColor;
+// }
+// numOfRepetitions = 10;
+// textToRepeat = "Hello World!";
+// let colorsList = new Array();
+// for (let i = 0; i < numOfRepetitions; i++){
+//     colorsList[i] = genHexadecimalColor();
+//     console.log(`%c ${textToRepeat}`, `color:#${colorsList[i]};`);
+// }
+
