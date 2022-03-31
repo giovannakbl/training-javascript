@@ -76,3 +76,29 @@
 // console.log(`The generated numbers in the interval of ${minLimit} and ${maxLimit} were: ${listOfGeneratedNumbers}`);
 // console.log(`min value: ${minValue}`);
 // console.log(`max value: ${maxValue}`);
+
+// Exercise 02
+
+// let actualDate = new Date;
+// // Function that checks if a number is an integer and if it is smaller than 10
+// // If true, returns the number in a 2 digit format (with a 0 in front)
+// // If false, returns the number unchanged
+// function twoDigitsInteger(intValue) {
+//     if (Number.isInteger(intValue) && intValue <= 9 && intValue >= -9)
+//     {
+//         if (intValue >=0) {
+//             intValue = `0${intValue}`;
+//         } else {
+//             intValue = `-0${intValue * (-1)}`;
+//         }
+//     }
+//     return intValue;
+// }
+// let actualTime = `${twoDigitsInteger(actualDate.getHours())}:${twoDigitsInteger(actualDate.getMinutes())}:${twoDigitsInteger(actualDate.getSeconds())}`;
+// if (actualTime >= "06:00:00" && actualTime < "12:00:00") {
+//     alert(`¡Buenos días!\n Son las ${actualTime}`);
+// } else if (actualTime >= "12:00:00" && actualTime < "21:00:00") {
+//     alert(`¡Buenas tardes!\nSon las ${actualTime}`);
+// } else {
+//     alert(`¡Buenas noches!\n Son las ${actualTime}`);
+// }
