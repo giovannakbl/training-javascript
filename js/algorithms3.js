@@ -195,3 +195,35 @@ if (checkDNI(informedDNI)) {
 }
 
 // exercise4();
+
+const exercise4b = () => {
+// Exercise 4 Bonus
+
+// The function numberInterval returns an integer number included in a given interval
+// The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
+// The order in which the parameters are informed is not important
+// The random number generated will be an integer equal or greater than the smallest informed value and equal or smaller than the biggest informed value 
+function numberInInterval(minNumber, maxNumber) {
+    if (minNumber > maxNumber) {
+        let tempValue = minNumber;
+        minNumber = maxNumber;
+        maxNumber = tempValue;
+    }
+return Math.round(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber))) + Math.ceil(minNumber);
+}
+
+// Function that generates a random DNI
+function generateDNI() {
+    let randomDNI = "";
+    for (let i = 0; i < 8; i++){
+        randomDNI += `${numberInInterval(0, 9)}`;
+    }
+    let validationLetters = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+    let lastDNIChar = validationLetters[(randomDNI % 23)];
+    randomDNI += lastDNIChar;
+    return randomDNI;    
+}
+console.log(`Here you have a valid DNI: ${generateDNI()}`);
+}
+
+// exercise4b();
