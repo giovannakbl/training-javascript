@@ -227,3 +227,59 @@ console.log(`Here you have a valid DNI: ${generateDNI()}`);
 }
 
 // exercise4b();
+
+// Exercise 5
+
+const exercise5 = () => {
+// The function numberInterval returns an integer number included in a given interval
+// The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
+// The order in which the parameters are informed is not important
+// The random number generated will be an integer equal or greater than the smallest informed value and equal or smaller than the biggest informed value 
+function numberInInterval(minNumber, maxNumber) {
+    if (minNumber > maxNumber) {
+        let tempValue = minNumber;
+        minNumber = maxNumber;
+        maxNumber = tempValue;
+    }
+return Math.round(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber))) + Math.ceil(minNumber);
+}
+
+function randomCarPlate() {
+    let quantityOfNum = 4;
+    let quantityOfLetters = 3;
+    let genPlate = "";
+    let possibleNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let possibleLetters = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "V", "W", "X", "Y", "Z"];
+    for (let i = 0; i < quantityOfNum; i++) {
+        genPlate += possibleNum[numberInInterval(0, possibleNum.length -1)];
+    }
+    genPlate += " ";
+    for (let j = 0; j < quantityOfLetters; j++) {
+        genPlate += possibleLetters[numberInInterval(0, possibleLetters.length -1)];
+    }
+    return genPlate;
+}
+// console.log(randomCarPlate());
+
+let validQuantity = false;
+let platesQuantity;
+while (!validQuantity) {
+    platesQuantity = prompt("How many plates would you like to generate?");
+    if (platesQuantity.includes(",")) {
+       platesQuantity = platesQuantity.replace(",", ".");
+    }
+    platesQuantity = Number(platesQuantity);
+    if (Number.isInteger(platesQuantity) && platesQuantity > 0){
+        validQuantity = true;
+    } else {
+        alert(`Sorry, but that is not a valid quantity. You need to inform an integer value greater than 0.`);
+    }
+}
+let listOfPlates = "";
+for (let i = 0; i < platesQuantity; i++) {
+    listOfPlates += `\n${randomCarPlate()}`;   
+}
+alert(`The ${platesQuantity} plates you requested are the following: ${listOfPlates}`);
+}
+
+exercise5();
