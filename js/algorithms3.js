@@ -282,4 +282,72 @@ for (let i = 0; i < platesQuantity; i++) {
 alert(`The ${platesQuantity} plates you requested are the following: ${listOfPlates}`);
 }
 
-exercise5();
+// exercise5();
+
+// Exercise 6
+
+const exercise6 = () => {
+
+// The function numberInterval returns an integer number included in a given interval
+// The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
+// The order in which the parameters are informed is not important
+// The random number generated will be an integer equal or greater than the smallest informed value and equal or smaller than the biggest informed value 
+function numberInInterval(minNumber, maxNumber) {
+    if (minNumber > maxNumber) {
+        let tempValue = minNumber;
+        minNumber = maxNumber;
+        maxNumber = tempValue;
+    }
+return Math.round(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber))) + Math.ceil(minNumber);
+}
+
+// Function that returns a random array index of a given array
+function randomArrayIndex(givenArray) {
+    let randomIndex = numberInInterval(0, (givenArray.length - 1));
+    return randomIndex;
+}
+
+// Function that returns a random element of a given array
+function randomArrayElement(givenArray) {
+    let randomElement = givenArray[randomArrayIndex(givenArray)];
+    return randomElement;
+}
+
+// Function that creates a shuffled array mixing the positions of an existing array
+function shuffleArray(givenArray) {
+    let shuffledArray = [];
+    let randomIndex = 0;
+    for (let remainingElements = givenArray; remainingElements.length > 0; ) {
+        randomIndex = randomArrayIndex(remainingElements);
+        shuffledArray.push(remainingElements[randomIndex]);
+        remainingElements.splice(randomIndex,1);
+    }
+    return shuffledArray;
+}
+
+// Function that shows a message in console
+function showMessage(messageContent) {
+    console.log(messageContent);
+}
+
+// Function that shows a message in console with a given delay
+function showDelayedMessage(messageContent, delayInSeconds) {
+    // let actualDelay = delayInSeconds * 1000;
+    setTimeout(showMessage, (delayInSeconds * 1000), messageContent);
+}
+
+let citationsList = ["Sentence 01", "Sentence 02", "Sentence 03", "Sentence 04", "Sentence 05", "Sentence 06", "Sentence 07", "Sentence 08", "Sentence 09", "Sentence 10", "Sentence 11", "Sentence 12", "Sentence 13", "Sentence 14", "Sentence 15", "Sentence 16", "Sentence 17", "Sentence 18", "Sentence 19", "Sentence 20"];
+let unpublishedCitations = shuffleArray(citationsList);
+let delay = 10;
+let newDelay = delay;
+let timeLimit = 120;
+for (let i = 0; (i < unpublishedCitations.length - 1 && newDelay <= timeLimit); i++, newDelay += delay) {
+    showDelayedMessage(unpublishedCitations[i], newDelay);
+
+}
+
+}
+
+
+
+// exercise6();
