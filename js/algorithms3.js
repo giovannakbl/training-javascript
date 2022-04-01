@@ -332,22 +332,20 @@ function showMessage(messageContent) {
 
 // Function that shows a message in console with a given delay
 function showDelayedMessage(messageContent, delayInSeconds) {
-    // let actualDelay = delayInSeconds * 1000;
     setTimeout(showMessage, (delayInSeconds * 1000), messageContent);
 }
 
-let citationsList = ["Sentence 01", "Sentence 02", "Sentence 03", "Sentence 04", "Sentence 05", "Sentence 06", "Sentence 07", "Sentence 08", "Sentence 09", "Sentence 10", "Sentence 11", "Sentence 12", "Sentence 13", "Sentence 14", "Sentence 15", "Sentence 16", "Sentence 17", "Sentence 18", "Sentence 19", "Sentence 20"];
-let unpublishedCitations = shuffleArray(citationsList);
+let citationsList = ["“Sugar is the next tobacco, without a doubt, and that industry should be scared. It should be taxed just like tobacco and anything else that can, frankly, destroy lives.”", "“Real food doesn't have ingredients, real food is ingredients.”", "“When you are trying to move mountains, you want-and need-people on your side who want to move them with you.”", "“Give your kids a bloody knife and fork and let me put some fresh food in front of them they can eat.”", "“The whole idea is to earn the flavor. No one gives it to you.”", "“Many kids can tell you about drugs but do not know what celery or courgettes taste like.”", "“I profoundly believe that the power of food has a primal place in our homes, that binds us to the best bits of life.”", "“Food is one of life's greatest joys yet we've reached this really sad point where we're turning food into the enemy, and something to be afraid of”", "“My first outdoor cooking memories are full of erratic British summers, Dad swearing at a barbecue that he couldn't put together, and eventually eating charred sausages, feeling brilliant.”", "“I wouldn't say that processed food, ready meals and even takeaways aren't relevant to modern life, it's just that over the past 40 years there are three generations of people who have come out of school and gone through their home life without ever being shown how to cook properly.”", "“The future is about a plant-based diet.”", "“Pick a destination, go there, be open-minded and talk to the locals. Eat the things they eat and go where they go. You don't need to be fluent, just as long as you've got a smile on your face- people will be jumping over themselves to show you the stuff they're proud of.”", "“I'm probably a bit romantic about it, but I think we humans miss having contact with fire. We need it.”", "“Maybe God has a bigger plan for me than I have for myself.”", "“Cooking is the ultimate giving!”", "“Homicide is 0.8% of deaths. Diet-related disease is over 60%. But no one talks about it.”", "“The world is blessed most by men who do things, not by those who merely talk about them.”", "“From quite an early age I realised the effect that good food can have on others.”", "“The kitchen oven is reliable, but it`s made us lazy.”", "“If Obama wanted to make radical changes to America`s health long-term, all he has to do is treble the price of sugar and salt.”"];
+let unpublishedCitations = shuffleArray(Array.from(citationsList));
 let delay = 10;
 let newDelay = delay;
 let timeLimit = 120;
 for (let i = 0; (i < unpublishedCitations.length - 1 && newDelay <= timeLimit); i++, newDelay += delay) {
     showDelayedMessage(unpublishedCitations[i], newDelay);
-
 }
 
 }
 
 
 
-// exercise6();
+exercise6();
