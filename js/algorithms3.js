@@ -308,10 +308,10 @@ function randomArrayIndex(givenArray) {
 }
 
 // Function that returns a random element of a given array
-function randomArrayElement(givenArray) {
-    let randomElement = givenArray[randomArrayIndex(givenArray)];
-    return randomElement;
-}
+// function randomArrayElement(givenArray) {
+//     let randomElement = givenArray[randomArrayIndex(givenArray)];
+//     return randomElement;
+// }
 
 // Function that creates a shuffled array mixing the positions of an existing array
 function shuffleArray(givenArray) {
@@ -343,9 +343,93 @@ let timeLimit = 120;
 for (let i = 0; (i < unpublishedCitations.length - 1 && newDelay <= timeLimit); i++, newDelay += delay) {
     showDelayedMessage(unpublishedCitations[i], newDelay);
 }
+}
+
+// exercise6();
+
+// Exercise 7
+
+const exercise7 = () => {
+
+// Function that orders the numbers in an array
+function orderNumbersArray(givenArray) {
+    let newArray = Array.from(givenArray);
+    for (let j = newArray.length -1; j > 0; j--) {
+    for (let i = 0, tempValue = ""; i < j; i++) {
+        if (newArray[i] > newArray[i + 1]) {
+            tempValue = newArray[i];
+            newArray[i] = newArray[i + 1];
+            newArray[i + 1] = tempValue;
+        }  
+    }
+}
+return newArray;
+}
+
+// Function that returns if a number is even
+function isEven(numericValue) {
+    return numericValue % 2 === 0;
+}
+
+// The function numberInterval returns an integer number included in a given interval
+// The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
+// The order in which the parameters are informed is not important
+// The random number generated will be an integer equal or greater than the smallest informed value and equal or smaller than the biggest informed value 
+function numberInInterval(minNumber, maxNumber) {
+    if (minNumber > maxNumber) {
+        let tempValue = minNumber;
+        minNumber = maxNumber;
+        maxNumber = tempValue;
+    }
+return Math.round(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber))) + Math.ceil(minNumber);
+}
+
+// Function that generates an array with diferent random numbers within a range
+function randomNumericArray(lengthOfArray, minValue, maxValue) {
+    let numericArray = [];
+    let randomElement;
+    for (let i = 0; i < lengthOfArray; i++) {
+        randomElement = numberInInterval(minValue, maxValue);
+        while (numericArray.includes(randomElement)) {
+            randomElement = numberInInterval(minValue, maxValue);
+        }
+        numericArray[i] = randomElement;
+    }
+    return numericArray;
+}
+
+// let listOfNumbers = [1, 5, 4, 6, 8, 7, 9, 3, 2, 8];
+// console.log(listOfNumbers);
+// console.log(orderNumbersArray(listOfNumbers));
+// console.log(isEven(-1));
+// let listOfEvenNumbers = Array.from(listOfNumbers);
+// listOfEvenNumbers = listOfEvenNumbers.filter(isEven);
+// console.log(listOfEvenNumbers);
+// listOfEvenNumbers = orderNumbersArray(listOfEvenNumbers);
+// console.log(listOfEvenNumbers);
+// let testArray = randomNumericArray(10, 1, 10);
+// console.log(testArray);
+
+let quantityOfNumbers = 100;
+let minLimit = 0;
+let maxLimit = 500;
+let listOfGenNumbers = randomNumericArray(quantityOfNumbers, minLimit, maxLimit);
+console.log(`Here we have a list of ${quantityOfNumbers} numbers within the interval of ${minLimit} and ${maxLimit}:\n ${listOfGenNumbers}`);
+let listOfEvenNumbers = Array.from(listOfGenNumbers).filter(isEven);
+console.log(`The list contains ${listOfEvenNumbers.length} even numbers, which are the following:\n ${listOfEvenNumbers}`);
+listOfEvenNumbers = orderNumbersArray(listOfEvenNumbers);
+console.log(`If we order the even numbers we have:\n\n${listOfEvenNumbers}`);
+
 
 }
 
+// exercise7();
 
+// Exercise 8
 
-exercise6();
+const exercise8 = () => {
+
+}
+
+// exercise8();
+
