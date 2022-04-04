@@ -559,7 +559,7 @@ const exercise7 = () => {
 
 // exercise7();
 
-// Exercise 8
+// Exercise 8 Attempt A
 
 const exercise8A = () => {
   // The function numberInterval returns an integer number included in a given interval
@@ -587,13 +587,9 @@ const exercise8A = () => {
   // Function that generates a random card given the 4 arrays of available decks and removes the generated card from the deck
   function genRandomCard(
     deck1,
-    nameOfDeck1,
     deck2,
-    nameOfDeck2,
     deck3,
-    nameOfDeck3,
     deck4,
-    nameOfDeck4
   ) {
     let quantityOfAvailableCards =
       deck1.length + deck2.length + deck3.length + deck4.length;
@@ -603,78 +599,114 @@ const exercise8A = () => {
     let indexInDeck;
     if (randomNumber < deck1.length) {
       indexInDeck = randomNumber;
-      randomCard = deck1[indexInDeck];
-      randomCard[2] = nameOfDeck1;
+      randomCard = Array.from(deck1[indexInDeck]);
       removeElementInArray(deck1, indexInDeck);
     } else if (randomNumber < deck1.length + deck2.length) {
       indexInDeck = randomNumber - deck1.length;
-      randomCard = deck2[indexInDeck];
-      randomCard[2] = nameOfDeck2;
+      randomCard = Array.from(deck2[indexInDeck]);
       removeElementInArray(deck2, indexInDeck);
     } else if (randomNumber < deck1.length + deck2.length + deck3.length) {
       indexInDeck = randomNumber - deck1.length - deck2.length;
-      randomCard = deck3[indexInDeck];
-      randomCard[2] = nameOfDeck3;
+      randomCard = Array.from(deck3[indexInDeck]);
       removeElementInArray(deck3, indexInDeck);
     } else {
       indexInDeck = randomNumber - deck1.length - deck2.length - deck3.length;
-      randomCard = deck4[indexInDeck];
-      randomCard[2] = nameOfDeck4;
+      randomCard = Array.from(deck4[indexInDeck]);
       removeElementInArray(deck4, indexInDeck);
     }
-    // console.log(nameOfDeck1);
-    // console.log(deck1);
-    // console.log(nameOfDeck2);
-    // console.log(deck2);
-    // console.log(nameOfDeck3);
-    // console.log(deck3);
-    // console.log(nameOfDeck4);
-    // console.log(deck4);
-
     return randomCard;
   }
 
   let deckOfClubs = [
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "Jack",
-    "Queen",
-    "King",
-    "Ace",
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"],
+    ["9"],
+    ["10"],
+    ["Jack"],
+    ["Queen"],
+    ["King"],
+    ["Ace"]
   ];
-  deckOfClubs = Array.from(deckOfClubs.entries());
-  let deckOfHearts = Array.from(deckOfClubs);
-  let deckOfSpades = Array.from(deckOfClubs);
-  let deckOfDiamonds = Array.from(deckOfClubs);
+  let deckOfHearts = [
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"],
+    ["9"],
+    ["10"],
+    ["Jack"],
+    ["Queen"],
+    ["King"],
+    ["Ace"]
+  ];
+  let deckOfSpades = [
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"],
+    ["9"],
+    ["10"],
+    ["Jack"],
+    ["Queen"],
+    ["King"],
+    ["Ace"]
+  ];
+  let deckOfDiamonds = [
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"],
+    ["9"],
+    ["10"],
+    ["Jack"],
+    ["Queen"],
+    ["King"],
+    ["Ace"]
+  ];
+  for (let i = 0; i < 13; i++) {
+    deckOfClubs[i][1] = i;
+    deckOfHearts[i][1] = i;
+    deckOfSpades[i][1] = i;
+    deckOfDiamonds[i][1] = i;
+    deckOfClubs[i][2] = "Clubs";
+    deckOfHearts[i][2] = "Hearts";
+    deckOfSpades[i][2] = "Spades";
+    deckOfDiamonds[i][2] = "Diamonds";
+  }
   let initialBetValue = 500;
   let playerBetAmount = initialBetValue;
-  let roundBet = 0;
-  let validRoundBet;
+  let roundBet = "";
+  let validRoundBet = false;
   let roundNumber = 0;
-  let cardOfPC;
-  let cardOfPlayer;
+  let cardOfPC = [];
+  let cardOfPlayer = [];
   let playerWins = false;
   let continueGame = true;
-  let userAnswerContinue;
-alert(`Let's play a game! You will start with a $ ${initialBetValue} amount. Whoever gets the highest card wins the round. If we get cards with the same value, the Suit of the card determines the winner. The suits are ordered by decreasing value: Clubs, Hearts, Spades and Diamonds`);
+  let userAnswerContinue = "";
+alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)} amount. Whoever gets the highest card wins the round.`);
   while (playerBetAmount > 0 && continueGame) {
     playerWins = false;
     roundNumber += 1;
     validRoundBet = false;
     while (!validRoundBet) {
       roundBet = prompt(
-        `Let's Start the round ${roundNumber}! You have $ ${playerBetAmount}. How much would you like to bet in this round?`
+        `Let's start Round ${roundNumber}! You have € ${playerBetAmount.toFixed(2)}. How much would you like to bet in this round?`
       );
-      if (roundBet.includes(",")) {
-        roundBet = roundBet.replace(",", ".");
-      }
+      roundBet = roundBet.replace(",", ".");
       roundBet = parseFloat(roundBet);
       if (
         !isNaN(roundBet) &&
@@ -683,22 +715,22 @@ alert(`Let's play a game! You will start with a $ ${initialBetValue} amount. Who
         Number.isInteger(roundBet * 100)
       ) {
         alert(
-          `Nice! Let's start round ${roundNumber} with your bet of $ ${roundBet.toFixed(
+          `Nice! Let's start round ${roundNumber} with your bet of € ${roundBet.toFixed(
             2
           )}. `
         );
         validRoundBet = true;
       } else if (roundBet > playerBetAmount) {
         alert(
-          `Sorry, but you don't have $ ${roundBet.toFixed(
+          `Sorry, but you don't have € ${roundBet.toFixed(
             2
-          )} available. You have $ ${playerBetAmount.toFixed(
+          )} available. You have € ${playerBetAmount.toFixed(
             2
           )} available right now.`
         );
       } else {
         alert(
-          `Sorry, but that is not a valid bet amount. You need to inform an amount between $ 0.01 and $ ${playerBetAmount.toFixed(
+          `Sorry, but that is not a valid bet amount. You need to inform an amount between € 0.01 and € ${playerBetAmount.toFixed(
             2
           )}, which is the available amount you have right now.`
         );
@@ -706,115 +738,124 @@ alert(`Let's play a game! You will start with a $ ${initialBetValue} amount. Who
     }
     cardOfPlayer = genRandomCard(
       deckOfClubs,
-      "Clubs",
       deckOfHearts,
-      "Hearts",
       deckOfSpades,
-      "Spades",
       deckOfDiamonds,
-      "Diamonds"
     );
     cardOfPC = genRandomCard(
       deckOfClubs,
-      "Clubs",
       deckOfHearts,
-      "Hearts",
       deckOfSpades,
-      "Spades",
       deckOfDiamonds,
-      "Diamonds"
     );
-        alert(`Computer got his card, and it is a ${cardOfPC[1]} of ${cardOfPC[2]}.\nNow it is your turn to get a card from the deck.`);
-    if (cardOfPlayer[0] != cardOfPC[0]) {
-      playerWins = cardOfPlayer[0] > cardOfPC[0];
-    } else {
-      let playerSuit;
-      let PCSuit;
-      switch (cardOfPlayer) {
-        case "Clubs":
-          playerSuit = 3;
-          break;
-        case "Hearts":
-          playerSuit = 2;
-          break;
-        case "Spades":
-          playerSuit = 1;
-          break;
-        case "Diamonds":
-          playerSuit = 0;
-          break;
-      }
-      switch (cardOfPC) {
-        case "Clubs":
-          PCSuit = 3;
-          break;
-        case "Hearts":
-          PCSuit = 2;
-          break;
-        case "Spades":
-          PCSuit = 1;
-          break;
-        case "Diamonds":
-          PCSuit = 0;
-          break;
-      }
-      playerWins = playerSuit > PCSuit;
-    }
+        alert(`Computer got his card, and it is a ${cardOfPC[0]} of ${cardOfPC[2]}.\nNow it is your turn to get a card from the deck.`);
+    if (cardOfPlayer[1] != cardOfPC[1]) {
+      playerWins = cardOfPlayer[1] > cardOfPC[1];
+    } 
     if (playerWins) {
       playerBetAmount = playerBetAmount + roundBet;
       alert(
-        `The computer got a: ${cardOfPC[1]} of ${cardOfPC[2]}.\nYou got a: ${
-          cardOfPlayer[1]
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
         } of ${
           cardOfPlayer[2]
-        }.\n\nYou win!!\n\nYour bet was $ ${roundBet.toFixed(
+        }.\n\nYou win!!\n\nYour bet was € ${roundBet.toFixed(
           2
-        )}. Now you have a total amount of $ ${playerBetAmount.toFixed(2)}.`
+        )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
       );
-    } else {
+      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+        cardOfPlayer[0]
+      } of ${
+        cardOfPlayer[2]
+      }.\n\nYou win!!\n\nYour bet was € ${roundBet.toFixed(
+        2
+      )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`);
+    } else if (cardOfPC[1] != cardOfPlayer[1]) {
       playerBetAmount = playerBetAmount - roundBet;
       alert(
-        `The computer got a: ${cardOfPC[1]} of ${cardOfPC[2]}.\nYou got a: ${
-          cardOfPlayer[1]
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
         } of ${
           cardOfPlayer[2]
-        }.\n\nYou lose!!\n\nYour bet was $ ${roundBet.toFixed(
+        }.\n\nYou lose!!\n\nYour bet was € ${roundBet.toFixed(
           2
-        )}. Now you have a total amount of $ ${playerBetAmount.toFixed(2)}.`
+        )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
       );
+      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+        cardOfPlayer[0]
+      } of ${
+        cardOfPlayer[2]
+      }.\n\nYou lose!!\n\nYour bet was € ${roundBet.toFixed(
+        2
+      )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`);
+    } else {
+      alert(
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
+        } of ${
+          cardOfPlayer[2]
+        }.\n\nIt is a draw!!\n\nYour bet was € ${roundBet.toFixed(
+          2
+        )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(2)}.`
+      );
+      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+        cardOfPlayer[0]
+      } of ${
+        cardOfPlayer[2]
+      }.\n\nIt is a draw!!\n\nYour bet was € ${roundBet.toFixed(
+        2
+      )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(2)}.`);
     }
     if (playerBetAmount > 0) {
       userAnswerContinue = "";
-      while (userAnswerContinue != "Y" && userAnswerContinue != "Q") {
+      while (userAnswerContinue != "Y" && userAnswerContinue != "N") {
         userAnswerContinue = prompt(
-          `Would you like to keep playing? Type Y to continue or Q to quit.`
+          `Would you like to keep playing? Answer with a Y for Yes or a N for No.`
         ).toUpperCase();
-        continueGame = !(userAnswerContinue == "Q");
-        if (userAnswerContinue != "Y" && userAnswerContinue != "Q") {
+        continueGame = !(userAnswerContinue == "N");
+        if (userAnswerContinue != "Y" && userAnswerContinue != "N") {
           alert(`Sorry, that is not a valid answer.`);
         }
       }
     } else {
         continueGame = false;
     }
+    if (deckOfClubs.length + deckOfHearts.length + deckOfSpades.length + deckOfDiamonds.length < 2) {
+      continueGame = false;
+      alert(`Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`);
+      console.log(`Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`);
+    }
   }
   if (playerBetAmount > initialBetValue) {
     alert(
-      `Nice job! You earned $ ${
-        playerBetAmount - initialBetValue
-      } in total and your total amount is $ ${playerBetAmount}. See you later!`
+      `Nice job!\nBetting benefits: € ${
+        (playerBetAmount - initialBetValue).toFixed(2)
+      }`
     );
+    console.log(`Nice job!\nBetting benefits: € ${
+      (playerBetAmount - initialBetValue).toFixed(2)
+    }`);
   } else if (playerBetAmount > 0) {
     alert(
-      `Nice playing with you! You lost $ ${
-        initialBetValue - playerBetAmount
-      } in total and your total amount is $ ${playerBetAmount}. See you later!`
+      `Nice playing with you!\nBetting benefits: € ${
+        (playerBetAmount - initialBetValue).toFixed(2)
+      }.`
     );
+    console.log(`Nice playing with you!\nBetting benefits: € ${
+      (playerBetAmount - initialBetValue).toFixed(2)
+    }.`);
   } else {
     alert(
-      `Game over! Your total amount is $ ${playerBetAmount}. See you later!`
+      `Game over! \nBetting benefits: € ${
+        (playerBetAmount - initialBetValue).toFixed(2)
+      }.`
     );
+    console.log(`Game over! \nBetting benefits: € ${
+      (playerBetAmount - initialBetValue).toFixed(2)
+    }.`);
   }
+  alert(`Total balance: € ${playerBetAmount.toFixed(2)}`);
+  console.log(`Total balance: € ${playerBetAmount.toFixed(2)}`);
 };
 
 exercise8A();
