@@ -559,9 +559,9 @@ const exercise7 = () => {
 
 // exercise7();
 
-// Exercise 8 Attempt A
+// Exercise 8
 
-const exercise8A = () => {
+const exercise8 = () => {
   // The function numberInterval returns an integer number included in a given interval
   // The function requires two numbers as parameters. They can be positive or negative and can either be integers or decimal numbers
   // The order in which the parameters are informed is not important
@@ -887,7 +887,7 @@ const exercise8A = () => {
   console.log(`Total balance: € ${playerBetAmount.toFixed(2)}`);
 };
 
-// exercise8A();
+// exercise8();
 
 // Exercise 9
 
