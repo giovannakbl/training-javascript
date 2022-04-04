@@ -585,12 +585,7 @@ const exercise8A = () => {
   }
 
   // Function that generates a random card given the 4 arrays of available decks and removes the generated card from the deck
-  function genRandomCard(
-    deck1,
-    deck2,
-    deck3,
-    deck4,
-  ) {
+  function genRandomCard(deck1, deck2, deck3, deck4) {
     let quantityOfAvailableCards =
       deck1.length + deck2.length + deck3.length + deck4.length;
     let randomNumber = numberInInterval(0, quantityOfAvailableCards - 1);
@@ -630,7 +625,7 @@ const exercise8A = () => {
     ["Jack"],
     ["Queen"],
     ["King"],
-    ["Ace"]
+    ["Ace"],
   ];
   let deckOfHearts = [
     ["2"],
@@ -645,7 +640,7 @@ const exercise8A = () => {
     ["Jack"],
     ["Queen"],
     ["King"],
-    ["Ace"]
+    ["Ace"],
   ];
   let deckOfSpades = [
     ["2"],
@@ -660,7 +655,7 @@ const exercise8A = () => {
     ["Jack"],
     ["Queen"],
     ["King"],
-    ["Ace"]
+    ["Ace"],
   ];
   let deckOfDiamonds = [
     ["2"],
@@ -675,7 +670,7 @@ const exercise8A = () => {
     ["Jack"],
     ["Queen"],
     ["King"],
-    ["Ace"]
+    ["Ace"],
   ];
   for (let i = 0; i < 13; i++) {
     deckOfClubs[i][1] = i;
@@ -697,14 +692,20 @@ const exercise8A = () => {
   let playerWins = false;
   let continueGame = true;
   let userAnswerContinue = "";
-alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)} amount. Whoever gets the highest card wins the round.`);
+  alert(
+    `Let's play a game! You will start with a € ${initialBetValue.toFixed(
+      2
+    )} amount. Whoever gets the highest card wins the round.`
+  );
   while (playerBetAmount > 0 && continueGame) {
     playerWins = false;
     roundNumber += 1;
     validRoundBet = false;
     while (!validRoundBet) {
       roundBet = prompt(
-        `Let's start Round ${roundNumber}! You have € ${playerBetAmount.toFixed(2)}. How much would you like to bet in this round?`
+        `Let's start Round ${roundNumber}! You have € ${playerBetAmount.toFixed(
+          2
+        )}. How much would you like to bet in this round?`
       );
       roundBet = roundBet.replace(",", ".");
       roundBet = parseFloat(roundBet);
@@ -740,18 +741,20 @@ alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)
       deckOfClubs,
       deckOfHearts,
       deckOfSpades,
-      deckOfDiamonds,
+      deckOfDiamonds
     );
     cardOfPC = genRandomCard(
       deckOfClubs,
       deckOfHearts,
       deckOfSpades,
-      deckOfDiamonds,
+      deckOfDiamonds
     );
-        alert(`Computer got his card, and it is a ${cardOfPC[0]} of ${cardOfPC[2]}.\nNow it is your turn to get a card from the deck.`);
+    alert(
+      `Computer got his card, and it is a ${cardOfPC[0]} of ${cardOfPC[2]}.\nNow it is your turn to get a card from the deck.`
+    );
     if (cardOfPlayer[1] != cardOfPC[1]) {
       playerWins = cardOfPlayer[1] > cardOfPC[1];
-    } 
+    }
     if (playerWins) {
       playerBetAmount = playerBetAmount + roundBet;
       alert(
@@ -763,13 +766,15 @@ alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)
           2
         )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
       );
-      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
-        cardOfPlayer[0]
-      } of ${
-        cardOfPlayer[2]
-      }.\n\nYou win!!\n\nYour bet was € ${roundBet.toFixed(
-        2
-      )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`);
+      console.log(
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
+        } of ${
+          cardOfPlayer[2]
+        }.\n\nYou win!!\n\nYour bet was € ${roundBet.toFixed(
+          2
+        )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
+      );
     } else if (cardOfPC[1] != cardOfPlayer[1]) {
       playerBetAmount = playerBetAmount - roundBet;
       alert(
@@ -781,13 +786,15 @@ alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)
           2
         )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
       );
-      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
-        cardOfPlayer[0]
-      } of ${
-        cardOfPlayer[2]
-      }.\n\nYou lose!!\n\nYour bet was € ${roundBet.toFixed(
-        2
-      )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`);
+      console.log(
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
+        } of ${
+          cardOfPlayer[2]
+        }.\n\nYou lose!!\n\nYour bet was € ${roundBet.toFixed(
+          2
+        )}. Now you have a total amount of € ${playerBetAmount.toFixed(2)}.`
+      );
     } else {
       alert(
         `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
@@ -796,15 +803,21 @@ alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)
           cardOfPlayer[2]
         }.\n\nIt is a draw!!\n\nYour bet was € ${roundBet.toFixed(
           2
-        )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(2)}.`
+        )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(
+          2
+        )}.`
       );
-      console.log(`The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
-        cardOfPlayer[0]
-      } of ${
-        cardOfPlayer[2]
-      }.\n\nIt is a draw!!\n\nYour bet was € ${roundBet.toFixed(
-        2
-      )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(2)}.`);
+      console.log(
+        `The computer got a: ${cardOfPC[0]} of ${cardOfPC[2]}.\nYou got a: ${
+          cardOfPlayer[0]
+        } of ${
+          cardOfPlayer[2]
+        }.\n\nIt is a draw!!\n\nYour bet was € ${roundBet.toFixed(
+          2
+        )}. Your total amount was not altered and remains as € ${playerBetAmount.toFixed(
+          2
+        )}.`
+      );
     }
     if (playerBetAmount > 0) {
       userAnswerContinue = "";
@@ -818,44 +831,147 @@ alert(`Let's play a game! You will start with a € ${initialBetValue.toFixed(2)
         }
       }
     } else {
-        continueGame = false;
-    }
-    if (deckOfClubs.length + deckOfHearts.length + deckOfSpades.length + deckOfDiamonds.length < 2) {
       continueGame = false;
-      alert(`Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`);
-      console.log(`Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`);
+    }
+    if (
+      deckOfClubs.length +
+        deckOfHearts.length +
+        deckOfSpades.length +
+        deckOfDiamonds.length <
+      2
+    ) {
+      continueGame = false;
+      alert(
+        `Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`
+      );
+      console.log(
+        `Oops, we have no cards left in the deck. I'm afraid our game has to be resumed.`
+      );
     }
   }
   if (playerBetAmount > initialBetValue) {
     alert(
-      `Nice job!\nBetting benefits: € ${
-        (playerBetAmount - initialBetValue).toFixed(2)
-      }`
+      `Nice job!\nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}`
     );
-    console.log(`Nice job!\nBetting benefits: € ${
-      (playerBetAmount - initialBetValue).toFixed(2)
-    }`);
+    console.log(
+      `Nice job!\nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}`
+    );
   } else if (playerBetAmount > 0) {
     alert(
-      `Nice playing with you!\nBetting benefits: € ${
-        (playerBetAmount - initialBetValue).toFixed(2)
-      }.`
+      `Nice playing with you!\nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}.`
     );
-    console.log(`Nice playing with you!\nBetting benefits: € ${
-      (playerBetAmount - initialBetValue).toFixed(2)
-    }.`);
+    console.log(
+      `Nice playing with you!\nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}.`
+    );
   } else {
     alert(
-      `Game over! \nBetting benefits: € ${
-        (playerBetAmount - initialBetValue).toFixed(2)
-      }.`
+      `Game over! \nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}.`
     );
-    console.log(`Game over! \nBetting benefits: € ${
-      (playerBetAmount - initialBetValue).toFixed(2)
-    }.`);
+    console.log(
+      `Game over! \nBetting benefits: € ${(
+        playerBetAmount - initialBetValue
+      ).toFixed(2)}.`
+    );
   }
   alert(`Total balance: € ${playerBetAmount.toFixed(2)}`);
   console.log(`Total balance: € ${playerBetAmount.toFixed(2)}`);
 };
 
-exercise8A();
+// exercise8A();
+
+// Exercise 9
+
+const exercise9 = () => {
+  function caesarCipher(cipherOrDecipher, givenMessage) {
+    let newMessage = "";
+    let listOfUpperChars = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+    let listOfLowerChars = [..."abcdefghijklmnopqrstuvwxyz"];
+    let offsetChar = 3;
+
+    let previousIndex;
+    let newIndex;
+    for (let i = 0; i < givenMessage.length; i++) {
+      if (listOfUpperChars.includes(givenMessage[i]) || listOfLowerChars.includes(givenMessage[i])) {
+        previousIndex = listOfUpperChars.indexOf(givenMessage[i].toUpperCase());
+        if (cipherOrDecipher.toUpperCase() == "CIPHER") {
+          newIndex = previousIndex + offsetChar;
+        } else if (cipherOrDecipher.toUpperCase() == "DECIPHER") {
+          newIndex = previousIndex - offsetChar;
+        }
+        if (newIndex > listOfUpperChars.length - 1) {
+          newIndex -= listOfUpperChars.length;
+        } else if (newIndex < 0) {
+          newIndex += listOfUpperChars.length;
+        }
+        if (listOfUpperChars.includes(givenMessage[i])) {
+          newMessage += listOfUpperChars[newIndex];
+        } else if (listOfLowerChars.includes(givenMessage[i])) {
+          newMessage += listOfLowerChars[newIndex];
+        } 
+      } else {
+        newMessage += givenMessage[i];
+      }
+    }
+    return newMessage;
+  }
+
+  let desiredAction = "";
+  let validDesiderdAction = false;
+  let userSentence = "";
+  while (!validDesiderdAction) {
+    desiredAction = prompt(
+      `Would you like to Cipher or to Decipher a message? (Answer C to cipher or D to decipher)`
+    ).toUpperCase();
+    if (desiredAction == "C") {
+      desiredAction = "CIPHER";
+    } else if (desiredAction == "D") {
+      desiredAction = "DECIPHER";
+    }
+    validDesiderdAction =
+      desiredAction == "CIPHER" || desiredAction == "DECIPHER";
+    if (!validDesiderdAction) {
+      alert(`Sorry, but that is not a valid answer.`);
+    }
+  }
+  if (desiredAction == "CIPHER") {
+    userSentence = prompt(
+      `Please inform the sentence you would like to cipher.`
+    );
+    alert(
+      `The original sentence is: ${userSentence}\n\nThe ciphered sentence is: ${caesarCipher(
+        desiredAction,
+        userSentence
+      )}`
+    );
+    console.log(`The original sentence is: ${userSentence}\n\nThe ciphered sentence is: ${caesarCipher(
+      desiredAction,
+      userSentence
+    )}`);
+  } else if (desiredAction == "DECIPHER") {
+    userSentence = prompt(
+      `Please inform the sentence you would like to decipher.`
+    );
+    alert(
+      `The ciphered sentence is: ${userSentence}\n\nThe deciphered sentence is: ${caesarCipher(
+        desiredAction,
+        userSentence
+      )}`
+    );
+    console.log(`The ciphered sentence is: ${userSentence}\n\nThe deciphered sentence is: ${caesarCipher(
+      desiredAction,
+      userSentence
+    )}`);
+  }
+};
+
+// exercise9();
