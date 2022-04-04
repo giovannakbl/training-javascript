@@ -326,7 +326,6 @@ const exercise5 = () => {
       ) + Math.ceil(minNumber)
     );
   }
-
   function randomCarPlate() {
     let quantityOfNum = 4;
     let quantityOfLetters = 3;
@@ -975,3 +974,4 @@ const exercise9 = () => {
 };
 
 // exercise9();
+
